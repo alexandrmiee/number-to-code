@@ -16,7 +16,7 @@ class NumberToCode {
     let rest = value;
     const modulo = this.getModulo(options);
     let result = "";
-    while (rest >= modulo) {
+    while (rest > modulo) {
       result = this.getSymbol(rest % modulo, options) + result;
       rest = Math.floor(rest / modulo);
     }
