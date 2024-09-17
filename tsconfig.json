@@ -1,26 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "module": "ES6",
+    "declaration": true,
+    "outDir": "./dist",
+    "target": "ES6",
     "allowJs": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": false,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noEmitOnError": false,
-    "noEmit": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "baseUrl": ".",
-    "module": "es6",
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
+    "moduleResolution": "Node",
     "isolatedModules": true
-  }
+  },
+  "include": ["./index.ts"]
 }

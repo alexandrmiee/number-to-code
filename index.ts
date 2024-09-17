@@ -1,4 +1,4 @@
-type ConverterOptions = {
+export type ConverterOptions = {
   alphabet?: string;
   variant?: "upper" | "lower" | "full";
 };

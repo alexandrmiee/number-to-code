@@ -2,9 +2,9 @@ import { test, expect } from "@jest/globals";
 import NumberToCode from "../index";
 
 test("convert to/from upper", () => {
-  const encoded = NumberToCode.encode(123_456, { variant: "upper" });
+  const encoded = NumberToCode.encode(123_456);
   expect(encoded).toEqual("AAHAQI");
-  const decoded = NumberToCode.decode(encoded, { variant: "upper" });
+  const decoded = NumberToCode.decode(encoded);
   expect(decoded).toEqual(123456);
 });
 
