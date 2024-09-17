@@ -1,3 +1,9 @@
+export var ConverterVariants;
+(function (ConverterVariants) {
+    ConverterVariants["Upper"] = "upper";
+    ConverterVariants["Lower"] = "lower";
+    ConverterVariants["Full"] = "full";
+})(ConverterVariants || (ConverterVariants = {}));
 const MODULO_SHORT = 26;
 const MODULO_FULL = MODULO_SHORT * 2;
 const UPPER_OFFSET = "A".charCodeAt(0);
@@ -9,7 +15,7 @@ class NumberToCode {
         let rest = value;
         const modulo = this.getModulo(options);
         let result = "";
-        while (rest >= modulo) {
+        while (rest > modulo) {
             result = this.getSymbol(rest % modulo, options) + result;
             rest = Math.floor(rest / modulo);
         }
@@ -30,7 +36,7 @@ class NumberToCode {
         if (options.alphabet) {
             return options.alphabet.length;
         }
-        if (options.variant === "full") {
+        if (options.variant === ConverterVariants.Full) {
             return MODULO_FULL;
         }
         return MODULO_SHORT;
@@ -41,11 +47,11 @@ class NumberToCode {
         }
         let offset = UPPER_OFFSET;
         let index = value;
-        if (options.variant === "full" && value > MODULO_SHORT) {
+        if (options.variant === ConverterVariants.Full && value > MODULO_SHORT) {
             offset = LOWER_OFFSET;
             index = value - MODULO_SHORT;
         }
-        if (options.variant === "lower") {
+        if (options.variant === ConverterVariants.Lower) {
             offset = LOWER_OFFSET;
         }
         return String.fromCharCode(index + offset);
@@ -56,11 +62,12 @@ class NumberToCode {
         }
         let charCode = symbol.charCodeAt(0);
         let offset = UPPER_OFFSET;
-        if (options.variant === "full" && charCode > UPPER_OFFSET + MODULO_SHORT) {
+        if (options.variant === ConverterVariants.Full &&
+            charCode > UPPER_OFFSET + MODULO_SHORT) {
             offset = LOWER_OFFSET;
             charCode = charCode + MODULO_SHORT;
         }
-        if (options.variant === "lower") {
+        if (options.variant === ConverterVariants.Lower) {
             offset = LOWER_OFFSET;
         }
         return charCode - offset;
@@ -80,7 +87,7 @@ class NumberToCode {
         if ((_a = options.alphabet) === null || _a === void 0 ? void 0 : _a.length) {
             base = options.alphabet.length;
         }
-        if (options.variant === "full") {
+        if (options.variant === ConverterVariants.Full) {
             base = MODULO_FULL;
         }
         const maxValue = Math.pow(base, RESULT_LENGTH + 1) - 1;

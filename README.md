@@ -36,19 +36,19 @@ Converter can use different variants of symbols fo conversion:
 - `full` English alphabetical symbols in lower and upper case [A-Z-a-z]
 
 ```ts
-import NumberToCode from "number-to-code";
+import NumberToCode, { ConverterVariants } from "number-to-code";
 //...
 NumberToCode.encode(123456); //AAHAQI
 NumberToCode.decode("AAHAQI"); //123456
 //...
-NumberToCode.encode(123456, { variant: "upper" }); //AAHAQI
-NumberToCode.decode("AAHAQI", { variant: "upper" }); //123456
+NumberToCode.encode(123456, { variant: ConverterVariants.Upper }); //AAHAQI
+NumberToCode.decode("AAHAQI", { variant: ConverterVariants.Upper }); //123456
 //...
-NumberToCode.encode(123456, { variant: "lower" }); //aahaqi
-NumberToCode.decode("aahaqi", { variant: "lower" }); //123456
+NumberToCode.encode(123456, { variant: ConverterVariants.Lower }); //aahaqi
+NumberToCode.decode("aahaqi", { variant: ConverterVariants.Lower }); //123456
 //...
-NumberToCode.encode(123456, { variant: "full" }); //AAAtiI
-NumberToCode.decode("AAAtiI", { variant: "full" }); //123456
+NumberToCode.encode(123456, { variant: ConverterVariants.Full }); //AAAtiI
+NumberToCode.decode("AAAtiI", { variant: ConverterVariants.Full }); //123456
 ```
 
 #### alphabet

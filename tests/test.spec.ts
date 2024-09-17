@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import NumberToCode from "../index";
+import NumberToCode, { ConverterVariants } from "../index";
 
 test("convert to/from upper", () => {
   const encoded = NumberToCode.encode(123_456);
@@ -9,16 +9,24 @@ test("convert to/from upper", () => {
 });
 
 test("convert to/from lower", () => {
-  const encoded = NumberToCode.encode(123_456, { variant: "lower" });
+  const encoded = NumberToCode.encode(123_456, {
+    variant: ConverterVariants.Lower,
+  });
   expect(encoded).toEqual("aahaqi");
-  const decoded = NumberToCode.decode(encoded, { variant: "lower" });
+  const decoded = NumberToCode.decode(encoded, {
+    variant: ConverterVariants.Lower,
+  });
   expect(decoded).toEqual(123456);
 });
 
 test("convert to/from full", () => {
-  const encoded = NumberToCode.encode(123_456, { variant: "full" });
+  const encoded = NumberToCode.encode(123_456, {
+    variant: ConverterVariants.Full,
+  });
   expect(encoded).toEqual("AAAtiI");
-  const decoded = NumberToCode.decode(encoded, { variant: "full" });
+  const decoded = NumberToCode.decode(encoded, {
+    variant: ConverterVariants.Full,
+  });
   expect(decoded).toEqual(123456);
 });
 

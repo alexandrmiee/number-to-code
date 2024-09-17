@@ -1,6 +1,11 @@
+export enum ConverterVariants {
+  Upper = "upper",
+  Lower = "lower",
+  Full = "full",
+}
 export type ConverterOptions = {
   alphabet?: string;
-  variant?: "upper" | "lower" | "full";
+  variant?: ConverterVariants;
 };
 
 const MODULO_SHORT = 26;
@@ -43,7 +48,7 @@ class NumberToCode {
       return options.alphabet.length;
     }
 
-    if (options.variant === "full") {
+    if (options.variant === ConverterVariants.Full) {
       return MODULO_FULL;
     }
 
@@ -58,12 +63,12 @@ class NumberToCode {
     let offset = UPPER_OFFSET;
     let index = value;
 
-    if (options.variant === "full" && value > MODULO_SHORT) {
+    if (options.variant === ConverterVariants.Full && value > MODULO_SHORT) {
       offset = LOWER_OFFSET;
       index = value - MODULO_SHORT;
     }
 
-    if (options.variant === "lower") {
+    if (options.variant === ConverterVariants.Lower) {
       offset = LOWER_OFFSET;
     }
 
@@ -79,12 +84,15 @@ class NumberToCode {
 
     let offset = UPPER_OFFSET;
 
-    if (options.variant === "full" && charCode > UPPER_OFFSET + MODULO_SHORT) {
+    if (
+      options.variant === ConverterVariants.Full &&
+      charCode > UPPER_OFFSET + MODULO_SHORT
+    ) {
       offset = LOWER_OFFSET;
       charCode = charCode + MODULO_SHORT;
     }
 
-    if (options.variant === "lower") {
+    if (options.variant === ConverterVariants.Lower) {
       offset = LOWER_OFFSET;
     }
 
@@ -106,7 +114,7 @@ class NumberToCode {
     if (options.alphabet?.length) {
       base = options.alphabet.length;
     }
-    if (options.variant === "full") {
+    if (options.variant === ConverterVariants.Full) {
       base = MODULO_FULL;
     }
 

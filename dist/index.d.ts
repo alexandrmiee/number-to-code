@@ -1,6 +1,11 @@
+export declare enum ConverterVariants {
+    Upper = "upper",
+    Lower = "lower",
+    Full = "full"
+}
 export type ConverterOptions = {
     alphabet?: string;
-    variant?: "upper" | "lower" | "full";
+    variant?: ConverterVariants;
 };
 declare class NumberToCode {
     encode(value: number, options?: ConverterOptions): string;
